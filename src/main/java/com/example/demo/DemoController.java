@@ -18,4 +18,8 @@ public class DemoController{
         model.addAttribute("data5", " 매우 좋습니다."); // model 설정
         return "hello2"; // hello2.html 연결
     }
+    @GetMapping("/about_detailed")
+    public String about_detailed(Model model){
+        return "about_detailed";
+    }
 } 
