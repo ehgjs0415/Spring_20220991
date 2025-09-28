@@ -3,7 +3,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+// import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.model.domain.TestDB;
 import com.example.demo.model.service.TestService; // 최상단 서비스 클래스 연동 추가
@@ -25,8 +25,8 @@ public class DemoController{
         model.addAttribute("data1", " 송도헌님."); // model 설정
         model.addAttribute("data2", " 반갑습니다."); // model 설정
         model.addAttribute("data3", " 오늘."); // model 설정
-        model.addAttribute("data4", " 날씨는."); // model 설정
-        model.addAttribute("data5", " 매우 좋습니다."); // model 설정
+        model.addAttribute("data5", " 날씨는."); // model 설정
+        model.addAttribute("data6", " 매우 좋습니다."); // model 설정
         return "hello2"; // hello2.html 연결
     }
     @GetMapping("/about_detailed")
@@ -48,8 +48,14 @@ public class DemoController{
     @GetMapping("/testdb")
     public String getAllTestDBs(Model model) {
         TestDB test = testService.findByName("홍길동");
+        TestDB test1 = testService.findByName("아저씨");
+        TestDB test2 = testService.findByName("꾸러기");
         model.addAttribute("data4", test);
+        model.addAttribute("data5", test1);
+        model.addAttribute("data6", test2);
         System.out.println("데이터 출력 디버그 : " + test);
+        System.out.println("데이터 출력 디버그 : " + test1);
+        System.out.println("데이터 출력 디버그 : " + test2);
         return "testdb";
     }
 } 
