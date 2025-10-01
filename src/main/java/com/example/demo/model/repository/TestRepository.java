@@ -8,5 +8,5 @@ import com.example.demo.model.domain.TestDB; // 도메인 연동
 public interface TestRepository extends JpaRepository<TestDB, Long> {
 
     // Find all TestDB entities by a name
-    TestDB findByName(String name);   
+    TestDB findByName(String name);
 }
