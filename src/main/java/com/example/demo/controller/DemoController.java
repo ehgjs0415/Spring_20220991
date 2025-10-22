@@ -45,7 +45,7 @@ public class DemoController{
     }
     
     // 하단에 맵핑 이어서 추가
-    @GetMapping("/testdb")
+    @GetMapping("/testdb")  // 2주차 실습문제 해결
     public String getAllTestDBs(Model model) {
         TestDB test = testService.findByName("홍길동");
         TestDB test1 = testService.findByName("아저씨");

@@ -8,10 +8,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
-/**
- * 화면용(@Controller) 컨트롤러에서 발생하는 공통 예외 처리
- * 기존 BlogController 코드는 수정하지 않음.
- */
+//화면용(@Controller) 컨트롤러에서 발생하는 공통 예외 처리
+//기존 BlogController 코드는 수정하지 않음.
+//6주차 실습과제 해결
 @ControllerAdvice(annotations = Controller.class)
 public class GlobalControllerAdvice {
 
