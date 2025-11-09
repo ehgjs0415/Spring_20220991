@@ -36,7 +36,7 @@ public class Board {
         this.count = count;
         this.likec = likec;
     }
-    public void update(String title, String content) { // 현재 객체 상태 업데이트
+    public void update(String title, String content, String string, String string2, String string3, String string4) { // 현재 객체 상태 업데이트
         this.title = title;
         this.content = content;
         this.user = user;

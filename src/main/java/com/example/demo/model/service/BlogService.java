@@ -39,6 +39,10 @@ public class BlogService {
         return blogRepository.save(request.toEntity());
     }
 
+    public Board save(AddBoardRequest request){
+        return blogRepository2.save(request.toEntity());
+    }
+
     // public Optional<Article> findById(Long id) { // 게시판 특정 글 조회
     //     return blogRepository.findById(id);
     // }
@@ -56,8 +60,19 @@ public class BlogService {
         });
     }
 
+    public void update(Long id, AddBoardRequest request) {
+        Optional<Board> optionalBoard = blogRepository2.findById(id); // 단일 글 조회
+        optionalBoard.ifPresent(Board -> { // 값이 있으면
+            Board.update(request.getTitle(), request.getContent(), Board.getUser(), Board.getNewdate(), Board.getCount(), Board.getLikec()); // 값을 수정
+            blogRepository2.save(Board); // Article 객체에 저장
+        });
+    }
+
     public void delete(Long id) {
         blogRepository.deleteById(id);
     }
 
+    public void deleteBoard(Long id) {
+        blogRepository2.deleteById(id);
+    }
 }
