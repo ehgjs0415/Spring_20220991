@@ -6,7 +6,7 @@
 
 ![Status](https://img.shields.io/badge/Progress-Week%206-blue)
 ![Build](https://img.shields.io/badge/Spring%20Boot-practice-green)
-![Last%20Update](https://img.shields.io/badge/Updated-2025.10.21-success)
+![Last%20Update](https://img.shields.io/badge/Updated-2025.11.18-success)
 
 </div>
 
@@ -23,6 +23,7 @@
 | 5주차 | ✅ 완료 (10/21)   | 실습 과제 마무리                                | 진행 중이던 문제 해결 |
 | 6주차 | ✅ 해결 (10/21)   | 난이도 높은 실습 → 도움 받아 해결               | 더 복습 필요하다고 느낌 |
 | 10주차 | ✅ 해결 (11/09)   | 난이도가 꽤 있었음, 그래도 해결함            | 글 목록까지 구현 완료, 수정, 삭제까지 구현 |
+| 11주차 | ✅ 해결 (11/18)   | 1번째 글 번호는 어려웠음(도움을 받음), 2번째는 전주차(10주차실습문제)에서 해결           | 글 번호 구현, 삭제 구현 |
 
 ---
 
@@ -91,3 +92,25 @@
 - Article과 Board의 곂침으로 인해서 처음부터 수정 및 추가를 진행하였음
 - 수정, 삭제, 글 목록까지 모두 해결 완료
 - Board_list -> Board_view -> Board_edit 순서로 행해지고, Board_edit에서 수정 후 Board_list로 이동까지 구현 완료
+
+---
+
+### 11주차
+**상태:** 해결 (11/18)
+**내용:**  
+- 난이도 높은 실습 과제 (1번째 글 목록), 2번째 실습문제(삭제)는 전주차 10주차에서 해결
+- 11월 18일 해결
+- 글 번호와 글 삭제를 수행하였고, 특히 글 번호는 도움을 받아 해결함
+
+- BlogController.java 소스 코드 中
+- 게시글 순차 번호 출력을 위한 시작 번호 계산 및 Model에 추가 (추가/수정 부분) -> 11주차 과제
+
+        int pageSize = 5; // 한 페이지당 게시글 수
+        int startNum = (page * pageSize) + 1; 
+        model.addAttribute("startNum", startNum); // startNum을 모델에 추가
+
+- 글 목록 번호 중 Board_list.html 소스 코드 中
+- 게시글 번호를 구현 하기 위해서 상태 변수 stat 추가 후 글 번호 계산해서 출력
+
+        <tr th:each="board, stat : ${boards}">
+        <td th:text="${startNum + stat.index}"></td>

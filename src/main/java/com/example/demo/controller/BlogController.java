@@ -57,6 +57,11 @@ public class BlogController {
         } else {
             list = blogService.searchByKeyword(keyword, pageable); // 키워드로 검색
         }
+        // 게시글 순차 번호 출력을 위한 시작 번호 계산 및 Model에 추가 (추가/수정 부분) -> 11주차 과제
+        int pageSize = 5; // 한 페이지당 게시글 수
+        int startNum = (page * pageSize) + 1; 
+        model.addAttribute("startNum", startNum); // startNum을 모델에 추가
+
         model.addAttribute("boards", list); // 모델에 추가
         model.addAttribute("totalPages", list.getTotalPages()); // 페이지 크기
         model.addAttribute("currentPage", page); // 페이지 번호
@@ -123,6 +128,7 @@ public class BlogController {
         return "redirect:/article_list";
     }
 
+    // 11주차 과제 삭제 구현
     @DeleteMapping("/api/board_delete/{id}")
     public String deleteBoard(@PathVariable Long id) {
         blogService.deleteBoard(id);
