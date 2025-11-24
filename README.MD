@@ -6,7 +6,7 @@
 
 ![Status](https://img.shields.io/badge/Progress-Week%206-blue)
 ![Build](https://img.shields.io/badge/Spring%20Boot-practice-green)
-![Last%20Update](https://img.shields.io/badge/Updated-2025.11.18-success)
+![Last%20Update](https://img.shields.io/badge/Updated-2025.11.24-success)
 
 </div>
 
@@ -24,6 +24,7 @@
 | 6주차 | ✅ 해결 (10/21)   | 난이도 높은 실습 → 도움 받아 해결               | 더 복습 필요하다고 느낌 |
 | 10주차 | ✅ 해결 (11/09)   | 난이도가 꽤 있었음, 그래도 해결함            | 글 목록까지 구현 완료, 수정, 삭제까지 구현 |
 | 11주차 | ✅ 해결 (11/18)   | 1번째 글 번호는 어려웠음(도움을 받음), 2번째는 전주차(10주차실습문제)에서 해결           | 글 번호 구현, 삭제 구현 |
+| 12주차 | ✅ 해결 (11/24)   | 힌트가 많아서 실습문제 해결함(입력값 필터링)         | 중복된 비밀번호 및 나이 제한 구현 완료 |
 
 ---
 
@@ -114,3 +115,73 @@
 
         <tr th:each="board, stat : ${boards}">
         <td th:text="${startNum + stat.index}"></td>
+
+---
+
+### 12주차
+**상태:** 해결 (11/24)
+**내용:**  
+- 실습 과제(입력 필터링) 해결, 비밀번호 중복(123123123)과 나이 제한(100이상) 해결 완료, 정상적으로 회원가입(대문자,소문자 비밀번호 + 나이 100세 미만 일때 -> join_end 화면 정상출력)
+- 11월 24일 해결
+- Whitelabel이 떠서 ai에게 물어보았는데 잘 작동하고 있다고 전달 받음
+
+- Porn.xml 소스 코드 中
+- Validation 모듈을 추가하여 검증
+
+        <dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+
+- AddMemberRequest.java 소스 코드 中
+- 입력값 필터링을 위해서 Validation 모듈 추가 및 @어노테이션 추가 (추가/수정 부분) -> 12주차 과제
+
+        // 이름: 공백 x, 특수문자 x
+        @NotBlank(message = "이름은 필수 입력 값입니다.")
+        @Pattern(
+                regexp = "^[가-힣a-zA-Z0-9]+$",
+                message = "이름에는 공백이나 특수문자를 포함할 수 없습니다."
+        )
+        private String name;
+
+        // 이메일: 공백 x, 이메일 형식
+        @NotBlank(message = "이메일은 필수 입력 값입니다.")
+        @Email(message = "이메일 형식이 올바르지 않습니다.")
+        private String email;
+
+        // 패스워드: 패턴 ○ (8글자 이상, 대소문자 포함)
+        @NotBlank(message = "패스워드는 필수 입력 값입니다.")
+        @Pattern(
+                regexp = "^(?=.*[a-z])(?=.*[A-Z]).{8,}$",
+                message = "패스워드는 8자 이상이며 대문자와 소문자를 모두 포함해야 합니다."
+        )
+        private String password;
+
+        // 나이: 패턴 ○, 19이상 ~ 90세 이하 (문자열로 받으니 정규식으로 체크)
+        @NotBlank(message = "나이는 필수 입력 값입니다.")
+        @Pattern(
+                regexp = "^(1[9]|[2-8][0-9]|90)$",
+                message = "나이는 19세 이상 90세 이하의 숫자만 입력할 수 있습니다."
+        )
+        private String age;
+
+- MemberService.html 소스 코드 中
+- 서비스에 @Valid 붙여서 내부 검증 동작하게 만들기
+
+        public Member saveMember(@Valid AddMemberRequest request){
+                validateDuplicateMember(request); // 이메일 체크
+
+                String encodedPassword = passwordEncoder.encode(request.getPassword());
+                request.setPassword(encodedPassword); // 암호화된 비밀번호 설정
+                return memberRepository.save(request.toEntity());
+        }
+
+- MemberController.html 소스 코드 中
+- 컨트롤러에 @Valid 붙여서 내부 검증 동작하게 만들기
+
+        @PostMapping("/api/members") // 12주차 실습 문제 회원 가입 저장
+        public String addmembers(@Valid @ModelAttribute AddMemberRequest request) {
+                memberService.saveMember(request);
+                return "join_end"; // .HTML 연결
+        }
