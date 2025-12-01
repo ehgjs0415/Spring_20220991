@@ -6,7 +6,7 @@
 
 ![Status](https://img.shields.io/badge/Progress-Week%206-blue)
 ![Build](https://img.shields.io/badge/Spring%20Boot-practice-green)
-![Last%20Update](https://img.shields.io/badge/Updated-2025.11.24-success)
+![Last%20Update](https://img.shields.io/badge/Updated-2025.12.02-success)
 
 </div>
 
@@ -25,6 +25,7 @@
 | 10주차 | ✅ 해결 (11/09)   | 난이도가 꽤 있었음, 그래도 해결함            | 글 목록까지 구현 완료, 수정, 삭제까지 구현 |
 | 11주차 | ✅ 해결 (11/18)   | 1번째 글 번호는 어려웠음(도움을 받음), 2번째는 전주차(10주차실습문제)에서 해결           | 글 번호 구현, 삭제 구현 |
 | 12주차 | ✅ 해결 (11/24)   | 힌트가 많아서 실습문제 해결함(입력값 필터링)         | 중복된 비밀번호 및 나이 제한 구현 완료 |
+| 13주차 | ✅ 해결 (12/02)   | 로그인한 사용자로부터 게시판 수정 및 삭제 가능, 어려운 실습문제         | 로그인 후 글을 작성 완료 이후 수정 및 삭제 구현 |
 
 ---
 
@@ -185,3 +186,122 @@
                 memberService.saveMember(request);
                 return "join_end"; // .HTML 연결
         }
+
+---
+
+### 13주차
+**상태:** 해결 (12/02)
+**내용:**  
+- 실습 과제 : 로그인한 사용자로 글의 작성자를 저장한다 / 글의 작성자만 수정/삭제 버튼을 보여준다 -> 해결
+- 12월 2일 해결
+- 나에게는 난이도가 요구되는 문제였음. user값을 받아오는 건 되었는데 예외처리가 어려웠음(if구문 등) -> 도움을 받아서 해결
+
+1. 글 작성 시 “작성자 = 로그인 사용자” 로 저장하기
+- BlogController.addboards() 수정
+
+- 현재 코드 (마지막 부분):
+        
+        // 글쓰기 게시판
+        @GetMapping("/board_write")
+                public String board_write() {
+                return "board_write";
+        }
+
+        @PostMapping("/api/boards") // 글쓰기 게시판 저장
+                public String addboards(@ModelAttribute AddBoardRequest request) {
+                blogService.save(request);
+                return "redirect:/board_list"; // .HTML 연결
+        }
+
+- 아래 수정 코드 (로그인한 사용자의 email을 작성자로 저장)
+
+        // 글쓰기 게시판
+        @GetMapping("/board_write")
+                public String board_write() {
+                return "board_write";
+        }
+
+        @PostMapping("/api/boards") // 글쓰기 게시판 저장
+                public String addboards(@ModelAttribute AddBoardRequest request, HttpSession session) {
+
+                // 세션에서 로그인한 사용자의 이메일 꺼내기
+                String email = (String) session.getAttribute("email");
+
+                // 로그인 정보가 없으면 로그인 페이지로 보냄
+                if (email == null) {
+                        return "redirect:/member_login";
+                }
+
+                // 현재 로그인한 사용자로 작성자를 덮어쓰기
+                request.setUser(email);
+
+                blogService.save(request);
+                return "redirect:/board_list"; // .HTML 연결
+        }
+
+2. 작성자에게만 수정/삭제 버튼 보이게 하기
+- BlogController.board_view() 에 로그인 사용자 전달
+
+- 현재 코드:
+        
+        @GetMapping("/board_view/{id}") // 게시판 링크 지정
+        public String board_view(Model model, @PathVariable Long id) {
+                Optional<Board> list = blogService.findById(id); // 선택한 게시판 글
+
+                if (list.isPresent()) {
+                        model.addAttribute("boards", list.get()); // 존재할 경우 실제 Board 객체를 모델에 추가
+                } else {
+                        // 처리할 로직 추가 (예: 오류 페이지로 리다이렉트, 예외 처리 등)
+                        return "/error_page/article_error"; // 오류 처리 페이지로 연결
+                }
+                return "board_view"; // .HTML 연결
+        }
+- 수정 코드:
+
+        @GetMapping("/board_view/{id}") // 게시판 링크 지정
+        public String board_view(Model model, @PathVariable Long id, HttpSession session) {
+                Optional<Board> list = blogService.findById(id); // 선택한 게시판 글
+
+                if (list.isPresent()) {
+                        Board board = list.get();
+                        model.addAttribute("boards", board); // 선택한 게시글
+
+                        // 로그인한 사용자의 이메일을 모델에 추가
+                        String email = (String) session.getAttribute("email");
+                        model.addAttribute("email", email);
+                } else {
+                        return "/error_page/article_error"; // 오류 처리 페이지로 연결
+                }
+                return "board_view"; // .HTML 연결
+        }
+
+3. board_view.html 에 조건 걸어서 버튼 숨기기
+- board_view.html 아래쪽 부분
+
+        <tr th:each="board : ${boards}">
+                <td>
+                        <!-- 수정 버튼 -->
+                        <a class="btn btn-warning" th:href="@{/board_edit/{id}(id=${board.id})}">수정</a>
+                        <!-- 삭제 버튼 -->
+                        <form th:action="@{/api/board_delete/{id}(id=${board.id})}" method="post" style="display:inline;">
+                                <input type="hidden" name="_method" value="delete">
+                                <button type="submit" class="btn btn-danger">삭제</button>
+                        </form>
+                </td>
+        </tr>
+
+- 수정 코드(작성자와 로그인 이메일이 같을 때만 버튼 노출):
+
+        <tr th:each="board : ${boards}">
+                <td>
+                    <div th:if="${board.user == email}"> <!--13주차 연습문제 : 로그인한 사용자로 글의 작성자 수정 권한 부여-->
+                        <!-- 수정 버튼 -->
+                        <a class="btn btn-warning" th:href="@{/board_edit/{id}(id=${board.id})}">수정</a>
+                        <!-- 삭제 버튼 -->
+                        <form th:action="@{/api/board_delete/{id}(id=${board.id})}" method="post" style="display:inline;">
+                            <input type="hidden" name="_method" value="delete">
+                            <button type="submit" class="btn btn-danger">삭제</button>
+                        </form>
+                    </div>
+                </td>
+        </tr>

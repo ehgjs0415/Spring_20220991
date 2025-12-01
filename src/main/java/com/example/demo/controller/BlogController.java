@@ -82,18 +82,36 @@ public class BlogController {
         return "board_list"; // .HTML 연결
     }
 
-    @GetMapping("/board_view/{id}") // 게시판 링크 지정
-    public String board_view(Model model, @PathVariable Long id) {
-        Optional<Board> list = blogService.findById(id); // 선택한 게시판 글
+    // @GetMapping("/board_view/{id}") // 게시판 링크 지정 -> 기존코드
+    // public String board_view(Model model, @PathVariable Long id) {
+    //     Optional<Board> list = blogService.findById(id); // 선택한 게시판 글
         
+    //     if (list.isPresent()) {
+    //         model.addAttribute("boards", list.get()); // 존재할 경우 실제 Board 객체를 모델에 추가
+    //     } else {
+    //         // 처리할 로직 추가 (예: 오류 페이지로 리다이렉트, 예외 처리 등)
+    //         return "/error_page/article_error"; // 오류 처리 페이지로 연결
+    //     }
+    //     return "board_view"; // .HTML 연결
+    // }
+
+    @GetMapping("/board_view/{id}") // 게시판 링크 지정 -> 13주차 연습문제 해결
+    public String board_view(Model model, @PathVariable Long id, HttpSession session) {
+        Optional<Board> list = blogService.findById(id); // 선택한 게시판 글
+
         if (list.isPresent()) {
-            model.addAttribute("boards", list.get()); // 존재할 경우 실제 Board 객체를 모델에 추가
+            Board board = list.get();
+            model.addAttribute("boards", board); // 선택한 게시글
+
+            // 로그인한 사용자의 이메일을 모델에 추가
+            String email = (String) session.getAttribute("email");
+            model.addAttribute("email", email);
         } else {
-            // 처리할 로직 추가 (예: 오류 페이지로 리다이렉트, 예외 처리 등)
             return "/error_page/article_error"; // 오류 처리 페이지로 연결
         }
         return "board_view"; // .HTML 연결
     }
+
 
     @GetMapping("/board_edit/{id}")
     public String boardEdit(@PathVariable Long id, Model model) {
@@ -154,8 +172,26 @@ public class BlogController {
         return "board_write";
     }
 
-    @PostMapping("/api/boards") // 글쓰기 게시판 저장
-    public String addboards(@ModelAttribute AddBoardRequest request) {
+    // @PostMapping("/api/boards") // 글쓰기 게시판 저장
+    // public String addboards(@ModelAttribute AddBoardRequest request) {
+    //     blogService.save(request);
+    //     return "redirect:/board_list"; // .HTML 연결
+    // }
+
+    @PostMapping("/api/boards") // 글쓰기 게시판 저장 -> 13주차 연습문제 해결
+    public String addboards(@ModelAttribute AddBoardRequest request, HttpSession session) {
+
+        // 세션에서 로그인한 사용자의 이메일 꺼내기
+        String email = (String) session.getAttribute("email");
+
+        // 로그인 정보가 없으면 로그인 페이지로 보냄
+        if (email == null) {
+            return "redirect:/member_login";
+        }
+
+        // 현재 로그인한 사용자로 작성자를 덮어쓰기
+        request.setUser(email);
+
         blogService.save(request);
         return "redirect:/board_list"; // .HTML 연결
     }
