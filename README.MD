@@ -37,7 +37,7 @@
 
 ## 🎥 시연 영상
 - Google Drive: https://drive.google.com/file/d/140ndaeF-yC1QMnDrnRxSdm3RVtwUNR8p/view?usp=sharing
-- 시연 영상을 준비 한 이유 : Spring Boot 기반 웹 애플리케이션으로, 로컬/서버 환경에서 실행될 때 Controller, Session, DB, Validation 등이 동작하는 동적(Dynamic) 웹입니다. 하지만 GitHub Pages는 정적(Static) 사이트 호스팅만 지원하므로, 서버가 필요한 기능은 GitHub Pages에서 동작하지 않습니다. 깃허브 페이지에서는 기존 소스코드를 올리면 무시하거나, 404에러페이지를 보내 원할하게 페이지를 구성할 수 없습니다. 그러므로 동영상 시연 영상을 준비하였고, 깃허브 페이지는 최대한 구현을 해보도록 노력하였으나 한계점이 있기에 페이지 이동만 구현을 하게되었습니다.
+- 시연 영상을 준비 한 이유 : Spring Boot 기반 웹 애플리케이션으로, 로컬/서버 환경에서 실행될 때 Controller, Session, DB, Validation 등이 동작하는 동적(Dynamic) 웹입니다. 하지만 GitHub Pages는 정적(Static) 사이트 호스팅만 지원하므로, 서버가 필요한 기능은 GitHub Pages에서 동작하지 않습니다. 깃허브 페이지에서는 기존 소스코드를 올리면 무시하거나, 404에러페이지를 보내 원할하게 페이지를 구성할 수 없습니다. 그러므로 동영상 시연 영상을 준비하였고, 깃허브 페이지는 최대한 구현을 해보도록 노력하였으나 한계점이 있기에 페이지 이동만 구현을 하게되었습니다. 2배속해서 보시는 것을 추천드립니다. 교수님의 시간은 소중하니까요...
 
 ---
 
