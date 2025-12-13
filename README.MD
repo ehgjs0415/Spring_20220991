@@ -1,7 +1,7 @@
 <div align="center">
 
 # 🧪 Spring Boot (자바웹프로그래밍2) 학습 로그
-자바웹프로그래밍(2) 수업/스프링 부트 실습 진행 내역을 주차별로 정리한 리포지토리입니다.  
+자바웹프로그래밍(2) 수업/스프링 부트 실습 진행 내역을 주차별로 정리한 리포지토리입니다. 이 주소는 일부러 코드 정리하지 않았고, 공부한 내용과 흔적을 보여드리기 위해 주석 정리 또한 하지 않았습니다. 정리본은 아래 깃허브 주소를 남기겠습니다.
 (깃허브 주소 : https://github.com/ehgjs0415/Spring_20220991)
 
 ![Status](https://img.shields.io/badge/Progress-Week%2015-blue)
@@ -30,7 +30,7 @@
 
 ---
 ## 업로드 스크린샷
-![업로드 스크린샷 - 12/13일 기준](src\main\resources\Static\homework\15week-1.png)
+![업로드 스크린샷 - 12/13일 기준](src/main/resources/Static/homework/15week-1.png)
 ---
 
 # 📘 주차별 상세 로그
@@ -69,7 +69,7 @@
         </html>
 - 과제 해결 스크린 샷
 
-![2주차-헬로 페이지 수정](src\main\resources\Static\homework\2week-1.png)
+![2주차-헬로 페이지 수정](src/main/resources/Static/homework/2week-1.png)
 
 ### 2. 컨트롤러에 맵핑 추가
 
@@ -89,7 +89,7 @@
 
 - 5개 속성 변수를 출력한다.
 
-![2주차-헬로2 페이지 작성](src\main\resources\Static\homework\2week-2.png)
+![2주차-헬로2 페이지 작성](src/main/resources/Static/homework/2week-2.png)
 
 
 ---
@@ -105,7 +105,7 @@
 ### 1. about_detailed.html을 수정한다.
 - 수정 및 Font Awesome 아이콘도 수정하였음.
 
-![3주차-상세 페이지 작성](src\main\resources\Static\homework\3week-1.png)
+![3주차-상세 페이지 작성](src/main/resources/Static/homework/3week-1.png)
 
 ### 2. 되돌아가기 버튼 수정 (창을 닫을 예정인지)
 
@@ -122,7 +122,7 @@
 
         document.getElementById("return_btn").addEventListener('click', confirmClose);
 - 아래는 과제 해결 스크린 샷
-![3주차-상세 페이지 작성](src\main\resources\Static\homework\3week-2.png)
+![3주차-상세 페이지 작성](src/main/resources/Static/homework/3week-2.png)
 ---
 ### 4주차
 **상태:** 완료  (09/28)
@@ -133,7 +133,7 @@
 
 ### 1. VS CODE의 MYSQL 확장 활용 : 2명의 사용자를 db에서 직접 추가한다.
 - INSERT 문을 활용 : 스크린샷은 확장에서 SELECT 한 결과
-![4주차-데이터베이스 값 넣기](src\main\resources\Static\homework\4week-1.png)
+![4주차-데이터베이스 값 넣기](src/main/resources/Static/homework/4week-1.png)
 
 ### 2. 컨트롤러를 부분 수정한다 -> 사용자2, 3을 모델에 추가한다.
 - DemoController.java 中 
@@ -153,7 +153,7 @@
         }
 
 ### 3. 뷰를 수정 : testdb.html에서 직접 출력한다.
-![4주차-testdb 출력](src\main\resources\Static\homework\4week-2.png)
+![4주차-testdb 출력](src/main/resources/Static/homework/4week-2.png)
 
 ---
 ### 5주차
@@ -213,7 +213,7 @@
         }
 
 - 아래는 에러페이지 스크린샷
-![6주차-에러페이지 출력](src\main\resources\Static\homework\6week-1.png)
+![6주차-에러페이지 출력](src/main/resources/Static/homework/6week-1.png)
 
 ---
 
@@ -228,11 +228,11 @@
 
 ### 1.  게시판 글 수정하기 구현하기 (board_list.html 연결)
 - 아래는 board_list.html 연결한 스크린샷이다.
-![10주차-Board_list 뷰 연결](src\main\resources\Static\homework\10week-1.png)
+![10주차-Board_list 뷰 연결](src/main/resources/Static/homework/10week-1.png)
 
 ### 2. 글 수정 화면 만들기 (board_view.html 연결)
 - 아래는 board_view.html 연결한 스크린샷이다.
-![10주차-Board_view 뷰 연결](src\main\resources\Static\homework\10week-2.png)
+![10주차-Board_view 뷰 연결](src/main/resources/Static/homework/10week-2.png)
 
 ### 3. 글 수정을 위해 서비스 로직을 수정한다.
 
@@ -249,11 +249,11 @@
 
 - 그 이후 board_edit.html 연결
 - 아래는 board_edit.html 연결한 스크린샷이다.
-![10주차-Board_edit 뷰 연결](src\main\resources\Static\homework\10week-3.png)
+![10주차-Board_edit 뷰 연결](src/main/resources/Static/homework/10week-3.png)
 
 ### 4. 글 수정 확인 (board_list.html로 연결)
 - 글 수정이후 board_list.html로 연결한 스크린샷이다.
-![10주차-Board_list 뷰 연결](src\main\resources\Static\homework\10week-4.png)
+![10주차-Board_list 뷰 연결](src/main/resources/Static/homework/10week-4.png)
 
 ### 자세한 사항은 소스코드를 확인하시면 보실 수 있습니다. (글쓰기/수정/삭제)
 
@@ -283,11 +283,11 @@
 
 ### 3. 글 번호 출력 확인
 - 글 번호 확인 스크린샷이다.
-![11주차-Board_list 번호 확인](src\main\resources\Static\homework\11week-1.png)
+![11주차-Board_list 번호 확인](src/main/resources/Static/homework/11week-1.png)
 
 ### 4. 글 삭제 확인
 - 글 삭제 확인 스크린샷이다.
-![11주차-Board_edit 삭제 확인](src\main\resources\Static\homework\11week-2.png)
+![11주차-Board_edit 삭제 확인](src/main/resources/Static/homework/11week-2.png)
 
 
 ---
@@ -361,7 +361,7 @@
         }
 ### 실습 이후 스크린샷 (whitelabel 화면)
 - 회원가입 검증 오류 스크린샷이다. 정상적으로 검증하고 있다는 것을 볼 수 있다.(따로 에러페이지는 만들지 않았음. whitelabel이 나오는게 정상)
-![12주차-회원가입 오류 확인](src\main\resources\Static\homework\12week-1.png)
+![12주차-회원가입 오류 확인](src/main/resources/Static/homework/12week-1.png)
 
 ---
 
@@ -484,10 +484,10 @@
 
 ### 4. 실습 성공 스크린샷
 - 로그인 이후 글 수정 및 삭제 페이지 스크린샷 (작성자는 로그인된 계정으로 등록이 되어있음)
-![13주차-글 작성자 확인](src\main\resources\Static\homework\13week-1.png)
+![13주차-글 작성자 확인](src/main/resources/Static/homework/13week-1.png)
 
 - 다른 사용자가 다른 계정이 작성한 글을 볼 때 수정 / 삭제 버튼이 보이지 않음
-![13주차-다른 사용자 글 게시물 확인](src\main\resources\Static\homework\13week-2.png)
+![13주차-다른 사용자 글 게시물 확인](src/main/resources/Static/homework/13week-2.png)
 
 
 -------
@@ -604,7 +604,7 @@ FileController.java 中 ->  동일 파일 명 있으면 +i 해서 새로 생성
 
 ### 3. 실습 결과 화면
 - 다중 사용자 화면 (JSESSIONID 값이 서로 다름을 확인)
-![14주차-JSESSIONID 값이 다름을 확인](src\main\resources\Static\homework\14week-1.png)
+![14주차-JSESSIONID 값이 다름을 확인](src/main/resources/Static/homework/14week-1.png)
 
 - 파일 업로드 시 파일 제목이 같을 경우 다르게 업로드
-![14주차-동일 제목의 파일 업로드시 파일 제목 다르게 하기 확인](src\main\resources\Static\homework\14week-2.png)
+![14주차-동일 제목의 파일 업로드시 파일 제목 다르게 하기 확인](src/main/resources/Static/homework/14week-2.png)
