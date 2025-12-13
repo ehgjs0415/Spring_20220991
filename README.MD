@@ -1,8 +1,9 @@
 <div align="center">
 
 # 🧪 Spring Boot (자바웹프로그래밍2) 학습 로그
-자바웹프로그래밍(2) 수업/스프링 부트 실습 진행 내역을 주차별로 정리한 리포지토리입니다. 이 주소는 일부러 코드 정리하지 않았고, 공부한 내용과 흔적을 보여드리기 위해 주석 정리 또한 하지 않았습니다. 정리본은 아래 깃허브 주소를 남기겠습니다.
+자바웹프로그래밍(2) 수업/스프링 부트 실습 진행 내역을 주차별로 정리한 리포지토리입니다. 이 주소는 일부러 코드 정리하지 않았고, 공부한 내용과 흔적을 보여드리기 위해 주석 정리 또한 하지 않았습니다.
 (깃허브 주소 : https://github.com/ehgjs0415/Spring_20220991)
+(포트폴리오 깃허브 주소 : https://github.com/ehgjs0415/portfolio_web_20220991)
 
 ![Status](https://img.shields.io/badge/Progress-Week%2015-blue)
 ![Build](https://img.shields.io/badge/Spring%20Boot-practice-green)
@@ -31,6 +32,13 @@
 ---
 ## 업로드 스크린샷
 ![업로드 스크린샷 - 12/13일 기준](src/main/resources/Static/homework/15week-1.png)
+
+---
+
+## 🎥 시연 영상
+- Google Drive: https://drive.google.com/file/d/140ndaeF-yC1QMnDrnRxSdm3RVtwUNR8p/view?usp=sharing
+- 시연 영상을 준비 한 이유 : Spring Boot 기반 웹 애플리케이션으로, 로컬/서버 환경에서 실행될 때 Controller, Session, DB, Validation 등이 동작하는 동적(Dynamic) 웹입니다. 하지만 GitHub Pages는 정적(Static) 사이트 호스팅만 지원하므로, 서버가 필요한 기능은 GitHub Pages에서 동작하지 않습니다. 깃허브 페이지에서는 기존 소스코드를 올리면 무시하거나, 404에러페이지를 보내 원할하게 페이지를 구성할 수 없습니다. 그러므로 동영상 시연 영상을 준비하였고, 깃허브 페이지는 최대한 구현을 해보도록 노력하였으나 한계점이 있기에 페이지 이동만 구현을 하게되었습니다.
+
 ---
 
 # 📘 주차별 상세 로그
@@ -607,4 +615,5 @@ FileController.java 中 ->  동일 파일 명 있으면 +i 해서 새로 생성
 ![14주차-JSESSIONID 값이 다름을 확인](src/main/resources/Static/homework/14week-1.png)
 
 - 파일 업로드 시 파일 제목이 같을 경우 다르게 업로드
+
 ![14주차-동일 제목의 파일 업로드시 파일 제목 다르게 하기 확인](src/main/resources/Static/homework/14week-2.png)
