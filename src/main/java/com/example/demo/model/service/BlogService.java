@@ -75,7 +75,7 @@ public class BlogService {
         Optional<Board> optionalBoard = blogRepository2.findById(id); // 단일 글 조회
         optionalBoard.ifPresent(Board -> { // 값이 있으면
             Board.update(request.getTitle(), request.getContent(), Board.getUser(), Board.getNewdate(), Board.getCount(), Board.getLikec()); // 값을 수정
-            blogRepository2.save(Board); // Article 객체에 저장
+            blogRepository2.save(Board);
         });
     }
 

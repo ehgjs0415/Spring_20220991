@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,6 +43,14 @@ public class FileController {
 
             String sanitizedEmail = email.replaceAll("[^a-zA-Z0-9]", "_");
             Path filePath = uploadPath.resolve(sanitizedEmail + ".txt"); // 업로드 폴더에 .txt 이름 설정
+            
+            // 14주차 실습 과제 동일 파일명 있으면 다른 이름으로 새로 생성
+            int i = 1;
+            while (Files.exists(filePath)) {
+                filePath = uploadPath.resolve(sanitizedEmail + "_" + i + ".txt");
+                i++;
+            }
+            
             System.out.println("File path: " + filePath); // 디버깅용 출력
 
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath.toFile()))) {
@@ -56,7 +66,7 @@ public class FileController {
         } catch (IOException e) {
             e.printStackTrace();
             redirectAttributes.addFlashAttribute("message", "업로드 중 오류가 발생했습니다.");
-            return "/error_page/article_error"; // 오류 처리 페이지로 연결
+            return "/error_page/upload_error"; // 오류 처리 페이지로 연결
         }
         return "upload_end"; // .html 파일 연동
     }

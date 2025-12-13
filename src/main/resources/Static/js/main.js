@@ -126,9 +126,9 @@
 
 // 3주차 실습과제(창을 닫기)
 function confirmClose(){
-  if (window.confirm('정말 창을 닫으시겠습니까?')) {
-    window.close(); // 확인 누르면 창을 닫음
-  }
+    if (window.confirm('정말 창을 닫으시겠습니까?')) {
+        window.close(); // 확인 누르면 창을 닫음
+    }
 }
 
 document.getElementById("return_btn").addEventListener('click', confirmClose);
